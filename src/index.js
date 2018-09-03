@@ -25,20 +25,24 @@ readingFile(callback = (data) => {
   console.log(data);
   // renderer.html = function(data) {
 
-  for (i = 0; i < data.length; i++) {
-    let line = data[i];
-    if (line === renderer.link) {
-      console.log(line);
-    } else {
-      console.log('Not an href');
-    }
+  // for (i = 0; i < data.length; i++) {
+  //   let line = data[i];
+  //   if (line === renderer.link) {
+  //     console.log(line);
+  //   } else {
+  //     console.log('Not an href');
+  //   }
   //   let renderedFile = renderer.html(data[i]);
   // console.log(renderedFile);
   // for (link in data) {  
-  //   renderer.link = (href, title, text) => `<a target="_blank" href="${ href }" title="${ title }">${ text }</a>`;
-  //   console.log(link);
+    // let link = renderer.data;
+    // link = (href, title, text) => `<a target="_blank" href="${ href }" title="${ title }">${ text }</a>`;
+    // console.log(link);
+
+    let htmlContent = marked(data);
+    console.log(htmlContent);
   // };
-  };
+  // };
 });
 
 
