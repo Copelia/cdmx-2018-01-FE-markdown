@@ -1,6 +1,10 @@
 const fs = require('fs');
-const path = require('path');
+// const path = require('path');
 // const resolve = require('path').resolve;
+// Create reference instance
+const marked = require('marked');
+// Get reference
+const renderer = new marked.Renderer();
 
 // Resolver ruta parcial a absoluta
 // if (path.isAbsolute() === true) {
@@ -10,32 +14,51 @@ const readingFile = (callback) => {
       console.log('Error');
     } else {
       callback(data);
-      reading(data); 
+      // reading(data); 
     }
   });
 };
 // } else {
 //   resolve(path);
 // }
-readingFile(callback = (data) => console.log(data));
+readingFile(callback = (data) => {
+  console.log(data);
+  // renderer.html = function(data) {
+
+  for (i = 0; i < data.length; i++) {
+    let line = data[i];
+    if (line === renderer.link) {
+      console.log(line);
+    } else {
+      console.log('Not an href');
+    }
+  //   let renderedFile = renderer.html(data[i]);
+  // console.log(renderedFile);
+  // for (link in data) {  
+  //   renderer.link = (href, title, text) => `<a target="_blank" href="${ href }" title="${ title }">${ text }</a>`;
+  //   console.log(link);
+  // };
+  };
+});
+
 
 let newArr = [];
-const reading = (data) =>{
-  console.log(typeof(data));
-  // String 
-  let fileToArr = data.split();
-  console.log(typeof(fileToArr));
-  //  Regresa undefined, por qué ya no lo lee?  : (( 
+// const reading = (data) =>{
+// console.log(typeof(data));
+// String 
+// let fileToArr = data.split();
+// console.log(typeof(fileToArr));
+//  Regresa undefined, por qué ya no lo lee?  : (( 
 
-  // fileToArr.forEach(line => {
-  //   let matcher = /^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/;
-  //   if (line === line.match(matcher)) {
-  //     newArr.push(line);
-  //   } else {
-  //  throw new Error('Line not valid');
-  // }
-  // }
-};
+// fileToArr.forEach(line => {
+//   let matcher = /^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/;
+//   if (line === line.match(matcher)) {
+//     newArr.push(line);
+//   } else {
+//  throw new Error('Line not valid');
+// }
+// }
+
 
 // reading();
 
