@@ -1,6 +1,19 @@
 const fs = require('fs');
 // const path = require('path');
-// const resolve = require('path').resolve;
+// './README.md'
+// let path = './README.md';
+
+// Resolver ruta parcial a absoluta
+// const mdLinks = (callback) => {
+//   fs.readFile('./README.md', 'utf8', (err, data) =>{
+//     if (err) {
+//       console.log('Error');
+//     } else if (path.isAbsolute() !== true) {
+//       resolve(path);
+//     } else {
+//       callback(data);
+//       reading(data);
+
 // Create reference instance
 const marked = require('marked');
 const cheerio = require('cheerio');
@@ -12,8 +25,7 @@ const readingFile = (callback) => {
     if (err) {
       console.log('Error');
     } else {
-      callback(data);
-      // reading(data); 
+      callback(data); 
     }
   });
 };
@@ -33,5 +45,11 @@ readingFile(callback = (data) => {
   links = linksList;
   console.log(links);
 });
+
+
+// module.exports = {
+//   mdLinks,
+// };
+
 
 
