@@ -34,35 +34,47 @@ const readingFile = (callback) => {
 //   resolve(path);
 // }
 readingFile(callback = (data) => {
+  // Convirtiendo markdown a html para sacar links
   let htmlContent = marked(data);
   // console.log(htmlContent); 
-  
   const $ = cheerio.load(htmlContent);
  
-  let linksList = $('a').map(function(i, element) {
-    let hrefs = $(this).attr('href');
-    let anchorText = $(this).text();
+  const linksList = $('a').map(function(i, element) {
+    const hrefs = $(this).attr('href');
+    const anchorText = $(this).text();
+    //  Obteniendo attributo href para sacar status y texto como requisito
 
-    // fetch('hrefs')
-    // .then(result => {
-    //   console.log(result.status);
-    // }).catch((err) => {
-    //   console.log(err.message);
-    //   });
-      // Only absolute URLs are supported
+    linkObject = {
+      href: hrefs,
+      text: anchorText,
+      file: './README.md'
+    };
 
-    return hrefs + ' - ' + anchorText;
+    return linkObject;
   }).toArray();
 
+  // Declarando variable de arreglo de objetos para iterar hrefs
   let links = linksList;
-  console.log(links);
+  // console.log(links);
 
+  const arrLinks = [];
+  for (let i = 0; i < links.length; i++) {
+    arrLinks.push(links[i].href);
+  }
+  // Obteniendo arreglo de links para probar promise.all
+  // console.log(arrLinks);
+
+  // map every url to the promise fetch
+  let requests = arrLinks.map(url => fetch(url));
+  // Promise.all waits until all jobs are resolved
+  Promise.all(requests)
+    .then(responses => responses.forEach(
+      response => console.log(`${response.url}: ${response.status}`)
+    ));
 });
 
 
+// module.exports = index;
 // module.exports = {
 //   mdLinks,
 // };
-
-
-

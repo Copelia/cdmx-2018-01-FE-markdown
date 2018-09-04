@@ -1,3 +1,3 @@
-// require('../src/index');
+// require('../index');
 
-// const fileType = require('../src/index.js');
+// const fileType = require('../index.js');

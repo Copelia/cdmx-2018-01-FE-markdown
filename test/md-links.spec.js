@@ -1,11 +1,17 @@
 
 //  Probar función
-// const readingFunction = require('../src/index.js');
-const fileType = require('../src/index.js');
+const { mdLinks } = require('../index.js');
 
 
-describe('debería ser una función', () =>{
-  test('debería ser una función', () =>{
-    expect(typeof fileType(readingFunction)).toEqual('function');
+describe('mdLinks', () =>{
+  test('mdLinks debería ser una función', () =>{
+    expect(typeof mdLinks(readingFunction)).toEqual('function');
   });
+});
+
+test('the data has arrived', done => {
+  function mdLinks(data) {
+    expect(data).toBe('???');
+    done();
+  };
 });
