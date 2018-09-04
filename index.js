@@ -34,16 +34,19 @@ const readingFile = (callback) => {
 // }
 readingFile(callback = (data) => {
   let htmlContent = marked(data);
-  // console.log(htmlContent); Aquí sólo imprime el primer elemento encontrado
+  // console.log(htmlContent); 
+  
   const $ = cheerio.load(htmlContent);
-  // let link = $('a').attr('href');
-  // console.log(link);
+ 
   let linksList = $('a').map(function(i, element) {
-    return $(this).attr('href');
+    let hrefs = $(this).attr('href');
+    let anchorText = $(this).text();
+    return hrefs + ' - ' + anchorText;
   }).toArray();
 
-  links = linksList;
+  let links = linksList;
   console.log(links);
+
 });
 
 
