@@ -1,4 +1,5 @@
 const fs = require('fs');
+const fetch = require('node-fetch');
 // const path = require('path');
 // './README.md'
 // let path = './README.md';
@@ -41,6 +42,15 @@ readingFile(callback = (data) => {
   let linksList = $('a').map(function(i, element) {
     let hrefs = $(this).attr('href');
     let anchorText = $(this).text();
+
+    // fetch('hrefs')
+    // .then(result => {
+    //   console.log(result.status);
+    // }).catch((err) => {
+    //   console.log(err.message);
+    //   });
+      // Only absolute URLs are supported
+
     return hrefs + ' - ' + anchorText;
   }).toArray();
 
