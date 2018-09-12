@@ -4,24 +4,23 @@ const fetch = require('node-fetch');
 // './README.md'
 // let path = './README.md';
 
-// Resolver ruta parcial a absoluta
-// const mdLinks = (callback) => {
-//   fs.readFile('./README.md', 'utf8', (err, data) =>{
-//     if (err) {
-//       console.log('Error');
-//     } else if (path.isAbsolute() !== true) {
-//       resolve(path);
-//     } else {
-//       callback(data);
-//       reading(data);
+// const file = ('./README.md');
+
+// const resolvePath = () => {
+//   let file = path.resolve();
+//   return file;
+// };
+
+// resolvePath();
 
 // Create reference instance
 const marked = require('marked');
 const cheerio = require('cheerio');
 
+
 // Resolver ruta parcial a absoluta
 // if (path.isAbsolute() === true) {
-const readingFile = (callback) => {
+const mdLinks = (callback) => {
   fs.readFile('./README.md', 'utf8', (err, data) =>{
     if (err) {
       console.log('Error');
@@ -33,7 +32,7 @@ const readingFile = (callback) => {
 // } else {
 //   resolve(path);
 // }
-readingFile(callback = (data) => {
+mdLinks(callback = (data) => {
   // Convirtiendo markdown a html para sacar links
   let htmlContent = marked(data);
   // console.log(htmlContent); 
@@ -55,7 +54,7 @@ readingFile(callback = (data) => {
 
   // Declarando variable de arreglo de objetos para iterar hrefs
   let links = linksList;
-  // console.log(links);
+  console.log(links);
 
   const arrLinks = [];
   for (let i = 0; i < links.length; i++) {
@@ -69,12 +68,15 @@ readingFile(callback = (data) => {
   // Promise.all waits until all jobs are resolved
   Promise.all(requests)
     .then(responses => responses.forEach(
+      // let result = await promise;
       response => console.log(`${response.url}: ${response.status}`)
-    ));
+    ))
+    .catch(()=>{
+      console.log('Error');
+    });
 });
 
 
-// module.exports = index;
-// module.exports = {
-//   mdLinks,
-// };
+module.exports = {
+  mdLinks,
+};

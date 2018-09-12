@@ -2,6 +2,6 @@
 
 const [,, ...args] = process.argv;
 
-// console.log('Hello world ${args}');
+console.log('Hello world ${args}');
 
-const mdLinks = require('./README.md', 'index.js');
+// const md-Links = require('mdLinks');
